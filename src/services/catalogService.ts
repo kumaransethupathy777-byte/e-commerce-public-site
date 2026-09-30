@@ -4,7 +4,7 @@ import { SAMPLE_PRODUCTS } from '../data/products';
 const API_BASE_URL =
   (import.meta as any).env?.VITE_API_BASE_URL ||
   (import.meta as any).env?.VITE_API_URL ||
-  'http://localhost:5051';
+  'https://enterprise-backend-9ifg.onrender.com';
 
 export interface PublicCatalogResponse {
   success: boolean;
