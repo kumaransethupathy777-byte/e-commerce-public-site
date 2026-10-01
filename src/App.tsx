@@ -6,7 +6,6 @@ import { Hero } from './components/Hero';
 import { ProductCard } from './components/ProductCard';
 import { ProductDetailModal } from './components/ProductDetailModal';
 import { CartDrawer } from './components/CartDrawer';
-import { OmnichannelSupportWidget } from './components/OmnichannelSupportWidget';
 import { Footer } from './components/Footer';
 import { SlidersHorizontal, Sparkles, RefreshCw, Layers, CheckCircle2 } from 'lucide-react';
 import { catalogService } from './services/catalogService';
@@ -19,7 +18,6 @@ export function App() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [supportInitialPrompt, setSupportInitialPrompt] = useState<string>('');
   const [selectedSizeFilter, setSelectedSizeFilter] = useState<string>('All');
   const [selectedPriceSort, setSelectedPriceSort] = useState<'default' | 'low-to-high' | 'high-to-low'>('default');
   
@@ -170,10 +168,6 @@ export function App() {
     setCartItems([]);
   };
 
-  const handleOpenSupportWithProduct = (productName: string, variantText: string) => {
-    setSupportInitialPrompt(`Hi! Is "${productName}" in (${variantText}) currently available for delivery?`);
-  };
-
   const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
@@ -318,7 +312,6 @@ export function App() {
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
         onAddToCart={handleAddToCart}
-        onOpenSupportWithProduct={handleOpenSupportWithProduct}
       />
 
       {/* Cart Drawer */}
@@ -329,13 +322,6 @@ export function App() {
         onUpdateQuantity={handleUpdateQuantity}
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
-      />
-
-      {/* Omnichannel Support Widget (WhatsApp / SMS / AI Q&A) */}
-      <OmnichannelSupportWidget
-        initialPrompt={supportInitialPrompt}
-        isCartOpen={isCartOpen}
-        isModalOpen={!!selectedProduct}
       />
 
       {/* Footer */}

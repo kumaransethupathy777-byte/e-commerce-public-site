@@ -44,12 +44,12 @@ export const Hero: React.FC<HeroProps> = ({ onExplore }) => {
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
           
-          <a
-            href="#chat-assistant"
-            className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 backdrop-blur-md transition-colors"
+          <button
+            onClick={onExplore}
+            className="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 backdrop-blur-md transition-colors cursor-pointer"
           >
-            Ask AI Stylist
-          </a>
+            Browse All Styles
+          </button>
         </div>
       </div>
 

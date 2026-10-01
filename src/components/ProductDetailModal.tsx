@@ -6,14 +6,12 @@ interface ProductDetailModalProps {
   product: Product | null;
   onClose: () => void;
   onAddToCart: (product: Product, size: string, color: string, quantity: number) => void;
-  onOpenSupportWithProduct: (productName: string, selectedVariantText: string) => void;
 }
 
 export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   product,
   onClose,
   onAddToCart,
-  onOpenSupportWithProduct,
 }) => {
   if (!product) return null;
 
@@ -258,20 +256,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 <span>Add to Bag</span>
                 <span>·</span>
                 <span>₹{(price * quantity).toLocaleString()}</span>
-              </button>
-            </div>
-
-            {/* Omnichannel Assistance Trigger */}
-            <div>
-              <button
-                onClick={() => {
-                  onOpenSupportWithProduct(product.name, `${selectedColor}, Size ${selectedSize}`);
-                  onClose();
-                }}
-                className="w-full py-2.5 px-4 rounded-xl border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-100 text-indigo-700 font-semibold text-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <MessageCircle className="w-4 h-4 text-indigo-600" />
-                <span>Ask AI or Inquire on WhatsApp about this item</span>
               </button>
             </div>
 
