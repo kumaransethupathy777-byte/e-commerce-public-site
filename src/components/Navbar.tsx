@@ -10,6 +10,7 @@ interface NavbarProps {
   onSearchChange: (q: string) => void;
   categories?: string[];
   isLiveSync?: boolean;
+  onStartTour?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -21,6 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSearchChange,
   categories = ['All', 'Men', 'Women', 'Unisex', 'Accessories', 'Fashion', 'Electronics', 'Home'],
   isLiveSync = true,
+  onStartTour,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -28,9 +30,20 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
       {/* Top Notification Bar */}
-      <div className="bg-slate-950 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-        <span>End of Season Drop: Complimentary Express Worldwide Delivery on all orders over ₹2,999</span>
+      <div className="bg-slate-950 text-white text-xs py-2 px-4 text-center font-medium flex items-center justify-between sm:justify-center gap-3">
+        <div className="flex items-center gap-2 mx-auto sm:mx-0">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+          <span>End of Season Drop: Complimentary Express Worldwide Delivery on all orders over ₹2,999</span>
+        </div>
+        {onStartTour && (
+          <button
+            onClick={onStartTour}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-bold shadow-xs transition-all cursor-pointer"
+          >
+            <Sparkles className="w-3 h-3 text-amber-300" />
+            <span>Tour Perfox AI</span>
+          </button>
+        )}
       </div>
 
       {/* Main Navigation Bar */}
@@ -119,6 +132,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Heart className="w-5 h-5" />
             </button>
+
+            {/* Tour Perfox AI Assistant Button */}
+            {onStartTour && (
+              <button
+                onClick={onStartTour}
+                title="Tour the Perfox AI Chatbot features"
+                className="flex items-center gap-1.5 h-10 px-3 sm:px-3.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition-all border border-indigo-200/80 cursor-pointer shadow-xs group"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-indigo-600 group-hover:rotate-12 transition-transform" />
+                <span className="hidden sm:inline">Tour AI Bot</span>
+              </button>
+            )}
 
             {/* Cart Button */}
             <button

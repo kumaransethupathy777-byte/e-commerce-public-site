@@ -9,6 +9,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { Footer } from './components/Footer';
 import { SlidersHorizontal, Sparkles, RefreshCw, Layers, CheckCircle2 } from 'lucide-react';
 import { catalogService } from './services/catalogService';
+import { startChatbotTour } from './tour/perfoxTour';
 
 export function App() {
   const [products, setProducts] = useState<Product[]>(SAMPLE_PRODUCTS);
@@ -20,6 +21,15 @@ export function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [selectedSizeFilter, setSelectedSizeFilter] = useState<string>('All');
   const [selectedPriceSort, setSelectedPriceSort] = useState<'default' | 'low-to-high' | 'high-to-low'>('default');
+  
+  // Automatically launch Perfox Chatbot tour on page refresh
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startChatbotTour();
+    }, 1200);
+
+    return () => clearTimeout(timer);
+  }, []);
   
   // Live Sync & API Loading state
   const [isLoading, setIsLoading] = useState(false);
@@ -182,6 +192,7 @@ export function App() {
         onSearchChange={setSearchQuery}
         categories={categories}
         isLiveSync={isLiveConnected}
+        onStartTour={startChatbotTour}
       />
 
       {/* Live Sync Status Banner */}
@@ -199,6 +210,14 @@ export function App() {
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={startChatbotTour}
+            className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-[11px] font-bold transition-all cursor-pointer shadow-xs"
+            title="Start interactive guided tour of Perfox Chatbot features"
+          >
+            <Sparkles className="w-3 h-3 text-amber-300" />
+            <span>Tour Perfox Bot</span>
+          </button>
           <span className="text-[11px] text-slate-400">Synced at {lastSyncTime}</span>
           <button
             onClick={() => loadLiveCatalog(false)}

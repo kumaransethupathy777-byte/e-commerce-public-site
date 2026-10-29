@@ -1,0 +1,167 @@
+/* Perfox Tour Theme - Driver.js Custom Styling */
+@import 'driver.js/dist/driver.css';
+
+/* Driver Overlay - Transparent SVG canvas so the cutout hole is 100% crystal-clear without dimming or blur */
+.driver-overlay {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Ensure the active highlighted element is sharp, vibrant, and completely unblurred */
+.driver-active-element,
+.driver-active-element * {
+  filter: none !important;
+  opacity: 1 !important;
+  -webkit-filter: none !important;
+}
+
+/* Custom Popover Container */
+.driver-popover.perfox-tour-popover {
+  background: #090d16 !important; /* Obsidian Midnight */
+  color: #f8fafc !important;
+  border: 1px solid rgba(99, 102, 241, 0.45) !important;
+  border-radius: 20px !important;
+  padding: 22px 24px !important;
+  max-width: 390px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08), 0 10px 30px rgba(99, 102, 241, 0.2) !important;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  z-index: 1000000002 !important;
+  animation: perfoxPopoverFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes perfoxPopoverFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Title Styling */
+.perfox-tour-popover .driver-popover-title {
+  font-family: 'Playfair Display', Georgia, Cambria, serif !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: #ffffff !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Description Styling */
+.perfox-tour-popover .driver-popover-description {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+  color: #cbd5e1 !important; /* Slate 300 */
+  font-weight: 400 !important;
+  margin-bottom: 18px !important;
+  white-space: pre-line !important;
+}
+
+/* Close Button (X) */
+.perfox-tour-popover .driver-popover-close-btn {
+  color: #94a3b8 !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  top: 14px !important;
+  right: 14px !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.perfox-tour-popover .driver-popover-close-btn:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Footer & Progress */
+.perfox-tour-popover .driver-popover-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-top: 14px !important;
+  padding-top: 14px !important;
+  border-top: 1px solid rgba(51, 65, 85, 0.6) !important;
+}
+
+.perfox-tour-popover .driver-popover-progress-text {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #a5b4fc !important; /* Indigo 300 */
+  background: rgba(99, 102, 241, 0.18) !important;
+  padding: 4px 11px !important;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+}
+
+/* Action Navigation Buttons */
+.perfox-tour-popover .driver-popover-navigation-btns {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.perfox-tour-popover .driver-popover-prev-btn {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #cbd5e1 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 7px 13px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.perfox-tour-popover .driver-popover-prev-btn:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.perfox-tour-popover .driver-popover-next-btn {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 7px 16px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45) !important;
+  cursor: pointer !important;
+}
+
+.perfox-tour-popover .driver-popover-next-btn:hover {
+  background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%) !important;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.6) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Arrow styling */
+.perfox-tour-popover .driver-popover-arrow-side-top {
+  border-top-color: #090d16 !important;
+}
+.perfox-tour-popover .driver-popover-arrow-side-bottom {
+  border-bottom-color: #090d16 !important;
+}
+.perfox-tour-popover .driver-popover-arrow-side-left {
+  border-left-color: #090d16 !important;
+}
+.perfox-tour-popover .driver-popover-arrow-side-right {
+  border-right-color: #090d16 !important;
+}
